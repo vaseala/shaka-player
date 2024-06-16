@@ -593,7 +593,10 @@ shaka.ui.SeekBar = class extends shaka.ui.RangeElement {
         shaka.util.Dom.createHTMLElement('img'));
       this.thumbnailImage_.id = 'shaka-player-ui-thumbnail-image';
       this.thumbnailImage_.draggable = false;
-      this.thumbnailImage_.src = uri;
+      // this.thumbnailImage_.src = uri;
+      if (this.player.thumbnailImageUriParser) {
+        uri = await this.player.thumbnailImageUriParser(uri);
+      }
       this.thumbnailImage_.onload = () => {
         if (uri.startsWith('blob:')) {
           URL.revokeObjectURL(uri);

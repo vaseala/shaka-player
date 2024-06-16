@@ -50,6 +50,8 @@ def GenerateTsDefs(inputs, output):
 
   # Remove the prefix clutz puts on all namespaces.
   contents = contents.replace(b'\xe0\xb2\xa0_\xe0\xb2\xa0.clutz.', b'')
+  # contents = contents.replace('?_?.clutz.', '')
+  contents = contents.replace(b'?_?.clutz.', b'')
   # Replace "GlobalObject" (from Clutz) with TypeScript-native "object".
   contents = re.sub(br'\bGlobalObject\b', b'object', contents)
   # Remove "Global" from Clutz's Global{Date,Element,Event,EventTarget} and use
